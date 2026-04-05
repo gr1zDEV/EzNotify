@@ -1,0 +1,33 @@
+# EzNotify main configuration
+hooks:
+  placeholderapi-enabled: true
+
+colors:
+  parse-legacy-ampersand: true
+  parse-hex: true
+
+templates:
+  folder: templates
+
+# Controls optional extras for /eznotify <player> <message>
+one-off-defaults:
+  chat:
+    enabled: true
+    message: ""
+  actionbar:
+    enabled: false
+    message: "%message%"
+  sound:
+    enabled: false
+    sound: "minecraft:block.note_block.pling"
+    volume: 1.0
+    pitch: 1.0
+  title:
+    enabled: false
+    title: ""
+    subtitle: ""
+    fade-in: 10
+    stay: 40
+    fade-out: 10
+
+debug: false

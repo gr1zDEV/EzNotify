@@ -1,0 +1,11 @@
+prefix: "&8[&dEzNotify&8] &r"
+
+no-permission: "%prefix%&cYou do not have permission to do that."
+player-not-found: "%prefix%&cPlayer '&f%player%&c' was not found."
+player-offline: "%prefix%&cPlayer '&f%player%&c' is offline."
+template-not-found: "%prefix%&cTemplate '&f%template%&c' does not exist."
+reload-success: "%prefix%&aEzNotify configuration, messages, and templates have been reloaded."
+usage-eznotify: "%prefix%&eUsage: /eznotify <player> <message>"
+usage-eznotifytemplate: "%prefix%&eUsage: /eznotifytemplate <template> <player>"
+notify-sent: "%prefix%&aSent notification to &f%player%&a."
+template-sent: "%prefix%&aSent template '&f%template%&a' to &f%player%&a."

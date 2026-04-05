@@ -1,0 +1,39 @@
+name: EzNotify
+main: com.ezinnovations.eznotify.EzNotifyPlugin
+version: ${project.version}
+api-version: '1.20'
+authors: [EzInnovations]
+description: Lightweight notification bridge for Paper/Folia command-driven notifications.
+folia-supported: true
+
+commands:
+  eznotify:
+    description: Send a one-off notification to a player.
+    usage: /eznotify <player> <message>
+    permission: eznotify.use
+  eznotifytemplate:
+    description: Send a notification template to a player.
+    usage: /eznotifytemplate <template> <player>
+    permission: eznotify.template
+  eznotifyreload:
+    description: Reload EzNotify configs and templates.
+    usage: /eznotifyreload
+    permission: eznotify.reload
+
+permissions:
+  eznotify.use:
+    description: Allows using /eznotify
+    default: op
+  eznotify.template:
+    description: Allows using /eznotifytemplate
+    default: op
+  eznotify.reload:
+    description: Allows using /eznotifyreload
+    default: op
+  eznotify.admin:
+    description: Full EzNotify admin permission node.
+    default: op
+    children:
+      eznotify.use: true
+      eznotify.template: true
+      eznotify.reload: true
