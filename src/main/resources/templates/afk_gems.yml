@@ -1,0 +1,18 @@
+chat:
+  enabled: true
+  message: "&dYou earned &5%reward% gems!"
+actionbar:
+  enabled: true
+  message: "&l&#a303f9+%reward% Gems"
+sound:
+  enabled: true
+  sound: "minecraft:block.amethyst_cluster.hit"
+  volume: 1.0
+  pitch: 1.2
+title:
+  enabled: false
+  title: ""
+  subtitle: ""
+  fade-in: 10
+  stay: 40
+  fade-out: 10

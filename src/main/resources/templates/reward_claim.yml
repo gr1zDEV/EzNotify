@@ -1,0 +1,18 @@
+chat:
+  enabled: true
+  message: "&dYou claimed your reward!"
+actionbar:
+  enabled: true
+  message: "&aReward redeemed!"
+sound:
+  enabled: true
+  sound: "minecraft:block.amethyst_block.chime"
+  volume: 1.0
+  pitch: 1.0
+title:
+  enabled: false
+  title: "&dReward!"
+  subtitle: "&fClaimed successfully"
+  fade-in: 10
+  stay: 40
+  fade-out: 10
