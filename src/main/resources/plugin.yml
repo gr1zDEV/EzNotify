@@ -1,7 +1,7 @@
 name: EzNotify
 main: com.ezinnovations.eznotify.EzNotifyPlugin
 version: ${project.version}
-api-version: '1.20'
+api-version: '1.21'
 authors: [EzInnovations]
 description: Lightweight notification bridge for Paper/Folia command-driven notifications.
 folia-supported: true
