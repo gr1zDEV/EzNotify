@@ -6,11 +6,16 @@ import com.ezinnovations.eznotify.model.NotificationTemplate;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Loads all template files from the templates directory and keeps a registry.
@@ -36,14 +41,20 @@ public class TemplateManager {
             return;
         }
 
-        File[] files = templateDirectory.listFiles((dir, name) -> name.toLowerCase(Locale.ROOT).endsWith(".yml"));
-        if (files == null) {
-            plugin.getLogger().warning("Unable to read templates directory: " + templateDirectory.getAbsolutePath());
+        List<Path> files;
+        try (Stream<Path> walk = Files.walk(templateDirectory.toPath())) {
+            files = walk
+                    .filter(Files::isRegularFile)
+                    .filter(path -> path.getFileName().toString().toLowerCase(Locale.ROOT).endsWith(".yml"))
+                    .toList();
+        } catch (IOException ex) {
+            plugin.getLogger().warning("Unable to read templates directory: " + templateDirectory.getAbsolutePath() + " (" + ex.getMessage() + ")");
             return;
         }
 
-        for (File file : files) {
-            String templateId = file.getName().substring(0, file.getName().length() - 4);
+        for (Path path : files) {
+            File file = path.toFile();
+            String templateId = toTemplateId(templateDirectory.toPath(), path);
             try {
                 YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
                 NotificationTemplate template = NotificationTemplate.fromSection(yaml, templateId);
@@ -57,6 +68,12 @@ public class TemplateManager {
         }
 
         plugin.getLogger().info("Loaded " + templateById.size() + " notification templates.");
+    }
+
+    private String toTemplateId(Path root, Path file) {
+        String relative = root.relativize(file).toString();
+        String withoutExtension = relative.substring(0, relative.length() - 4);
+        return withoutExtension.replace('\\', '/');
     }
 
     public Optional<NotificationTemplate> getTemplate(String id) {
